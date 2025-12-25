@@ -1,0 +1,29 @@
+version: "3.9"
+
+services:
+  user-service:
+    build: ./user-service
+    container_name: user-service
+    ports:
+      - "8002:8002"
+    volumes:
+      - ./user-service:/app
+    command: python manage.py runserver 0.0.0.0:8002
+
+  product-service:
+    build: ./product-service
+    container_name: product-service
+    ports:
+      - "8003:8003"
+    volumes:
+      - ./product-service:/app
+    command: python manage.py runserver 0.0.0.0:8003
+
+  order-service:
+    build: ./order-service
+    container_name: order-service
+    ports:
+      - "8004:8004"
+    volumes:
+      - ./order-service:/app
+    command: python manage.py runserver 0.0.0.0:8004
