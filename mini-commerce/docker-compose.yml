@@ -8,7 +8,9 @@ services:
       - "8002:8002"
     volumes:
       - ./user-service:/app
-    command: python manage.py runserver 0.0.0.0:8002
+    command: >
+      sh -c "python manage.py migrate &&
+            python manage.py runserver 0.0.0.0:8002"
 
   product-service:
     build: ./product-service
@@ -17,7 +19,9 @@ services:
       - "8003:8003"
     volumes:
       - ./product-service:/app
-    command: python manage.py runserver 0.0.0.0:8003
+    command: >
+      sh -c "python manage.py migrate &&
+            python manage.py runserver 0.0.0.0:8003"
 
   order-service:
     build: ./order-service
@@ -26,4 +30,6 @@ services:
       - "8004:8004"
     volumes:
       - ./order-service:/app
-    command: python manage.py runserver 0.0.0.0:8004
+    command: >
+      sh -c "python manage.py migrate &&
+            python manage.py runserver 0.0.0.0:8004"
